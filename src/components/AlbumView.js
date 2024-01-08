@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
+import Spinner from '../spinner';
 
 function AlbumView() {
     const navigate = useNavigate();
@@ -19,11 +20,13 @@ function AlbumView() {
     const justSongs = albumData.filter(entry => entry.wrapperType === 'track')
 
     const renderSongs = justSongs.map((song, i) => {
+
         return (
             <div key={i}>
-                <Link to={`/song/${song.trackId}`}>
-                <p>{song.trackName}</p>
-                </Link>
+
+                <p>{song.trackName} </p>
+                <audio src={song.previewUrl} controls preload="none" style={{ 'width': '25%' }}></audio>
+
             </div>
         )
     })
@@ -40,10 +43,10 @@ function AlbumView() {
 
     return (
         <div>
-            {albumData.length > 0 ? <h2>{albumData[0].collectionName}</h2> : <h2>Loading...</h2>}
+            {albumData.length > 0 ? <div> <img src = {albumData[0].artworkUrl100} height = "200"></img><h2>{albumData[0].collectionName}</h2></div> : <Spinner />}
             {navButtons()}
             <h2>The album id is: {id}</h2>
-            <p>album data goes here</p>
+            
             {renderSongs}
         </div>
 

@@ -18,18 +18,8 @@ function App() {
 	// const API_URL = 'https://itunes.apple.com/search?term='
 
 	useEffect(() => {
-		if (search) {
-			// const fetchData = async () => {
-			document.title = `${search} Music`
-			// 	const response = await fetch(API_URL + search)
-			// 	const resData = await response.json()
-			// 	if (resData.results.length > 0) {
-			// 		return setData(resData.results)
-			// 	} else {
-			// 		return setMessage('Not Found')
-			// 	}
-			// }
-			// fetchData()
+		if (search) {			
+			document.title = `${search} Music`			
 			console.log(fetchData(search))
 			setData(fetchData(search))
 			
@@ -53,9 +43,9 @@ function App() {
 	return (
 		<div className="App">
 
-<SearchBar handleSearch={handleSearch} />
+
 								
-								{message}
+								
 
 
 			<DataContext.Provider value={data}>
@@ -63,7 +53,9 @@ function App() {
 					<Routes>
 						<Route path="/" element={
 							<Fragment>
+								<SearchBar handleSearch={handleSearch} />
 								{renderGallery()}
+								{message}
 							</Fragment>
 						} />
 						<Route path="/album/:id" element={<AlbumView />} />
