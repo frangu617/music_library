@@ -13,7 +13,7 @@ function GalleryItem(props) {
         // backgroundImage: `url(${props.item.artworkUrl100})`,
         // backgroundRepeat: 'no-repeat',
         // backgroundSize: 'cover',        
-        color: 'yellow'
+        color: 'black'
     }
 
     const detailStyle = {
@@ -24,18 +24,18 @@ function GalleryItem(props) {
         'backgroundImage': `url(${props.item.artworkUrl100})`,
         'backgroundRepeat': 'no-repeat',
         'backgroundSize': 'cover',
-        'color': 'yellow'
+        'color': 'black'
     }
 
     const simpleView = () => {
         return (
             <div style={simpleStyle}>
-                <h3><Link to={`/song/${props.item.trackId}`}>{props.item.trackName}</Link></h3>
+                <h3>{props.item.trackName}</h3>
                 <h4><Link to={`/artist/${props.item.artistId}`}>{props.item.artistName}</Link></h4>
                 <h4><Link to={`/album/${props.item.collectionId}`}>{props.item.collectionName}</Link></h4>
                 <img src={props.item.artworkUrl100} alt={props.item.trackName} />
                 {/* knowledge from previous classes: adding an audio tag */}
-                <audio src={props.item.previewUrl} controls preload="auto" style={{ 'width': '100%' }}></audio>
+                <audio src={props.item.previewUrl} controls preload="none" style={{ 'width': '100%' }}></audio>
             </div>
         )
     }
